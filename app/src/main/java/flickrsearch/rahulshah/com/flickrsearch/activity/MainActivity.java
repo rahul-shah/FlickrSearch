@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
@@ -15,6 +16,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity
     private ProgressDialog pDialog;
     private ImageGalleryAdapter mAdapter;
     private String mCurrentQuery = "";
+    private int mContextMenuItemSelected = 0;
     public final static int SEARCH_QUERY_REQUEST = 1;
 
     @Override
@@ -62,13 +66,9 @@ public class MainActivity extends AppCompatActivity
 
         setUpViews();
 
-        if(isNetworkAvailable()) {
-            fetchImages("");
-        }
-        else
-        {
+        fetchImages("");
 
-        }
+        startActivity(new Intent(this,WelcomeIntroActivity.class));
     }
 
     private void setUpViews()
@@ -96,7 +96,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onLongClick(View view, int position)
             {
-
+                mContextMenuItemSelected = position;
+                registerForContextMenu(view);
             }
         }));
 
@@ -116,6 +117,30 @@ public class MainActivity extends AppCompatActivity
                 startActivityForResult(intent,SEARCH_QUERY_REQUEST);
             }
         });
+    }
+
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+    {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("Share this image");
+        menu.add(0, v.getId(), 0, "Share");
+    }
+
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getTitle().equals("Share")) {
+            createSharingMenu(mContextMenuItemSelected);
+        }
+        return true;
+    }
+
+    private void createSharingMenu(int imagePosition)
+    {
+        //Uri uri = Uri.parse(images.get(imagePosition).getFullImage());
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, images.get(imagePosition).getFullImage());
+        shareIntent.setType("text/plain");
+        startActivity(Intent.createChooser(shareIntent,"send to"));
     }
 
     private void fetchImages(String query)
@@ -143,6 +168,7 @@ public class MainActivity extends AppCompatActivity
                             image.setImage(temp.items.get(i).title);
                             image.setImage(temp.items.get(i).media.m);
                             image.setTimestamp(temp.items.get(i).date_taken);
+                            image.setFullImage(temp.items.get(i).link);
                             images.add(image);
                         }
 

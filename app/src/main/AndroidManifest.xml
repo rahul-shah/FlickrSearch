@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.WelcomeIntroActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -183,6 +183,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/exploded-aar/com.github.paolorotolo/appintro/4.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="95b97c30c8331619a9cc560ba9c3adb806e00ead">
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.paolorotolo-appintro-4.0.0_b8fb0b205cbfb177a3166fd78641ee48e80682ae/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/rahulshah/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.1.0/support-annotations-24.1.0.jar"
         jumboMode="true"
         optimize="true"
@@ -214,7 +223,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="e7f8fbab2d2180ce93edc415a812e21aa547a999">
+        sha1="ed08b9ab88c0cb035d9b16b82c6e5d18e9dc6bbe">
         <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b4392c1acebf944a3d9b3b7fca6b858dd6aab427/classes.dex" />
     </item>
     <item
