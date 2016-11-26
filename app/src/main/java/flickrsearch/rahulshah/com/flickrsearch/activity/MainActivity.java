@@ -36,10 +36,12 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.activity_main_fab) FloatingActionButton mSearchFAB;
 
     private String TAG = MainActivity.class.getSimpleName();
-    private static final String endpoint = "https://api.flickr.com/services/feeds/photos_public.gne?&tags=\"cats\"&format=json&nojsoncallback=1";
+    private static final String endpoint = "https://api.flickr.com/services/feeds/photos_public.gne?&tags=";
     private ArrayList<ImageHolder> images;
     private ProgressDialog pDialog;
     private ImageGalleryAdapter mAdapter;
+    private String mCurrentQuery = "";
+    public final static int SEARCH_QUERY_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity
 
         setUpViews();
 
-        fetchImages();
+        fetchImages("");
     }
 
     private void setUpViews()
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onRefresh() {
                 mSwipeRefreshLayout.setRefreshing(false);
-                fetchImages();
+                fetchImages(mCurrentQuery);
             }
         });
 
@@ -100,17 +102,18 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 // Click action
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,SEARCH_QUERY_REQUEST);
             }
         });
     }
 
-    private void fetchImages()
+    private void fetchImages(String query)
     {
+        String apiFinal = endpoint + query + "&format=json&nojsoncallback=1";
         pDialog.setMessage("Searching for images");
         pDialog.show();
 
-        StringRequest req = new StringRequest(endpoint,
+        StringRequest req = new StringRequest(apiFinal,
                 new Response.Listener<String>()
                 {
                     @Override
@@ -146,5 +149,24 @@ public class MainActivity extends AppCompatActivity
 
         // Adding request to request queue
         FlickrSearchApp.getInstance().addToRequestQueue(req);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode)
+        {
+            case SEARCH_QUERY_REQUEST:
+                if(data != null && data.hasExtra("USER_QUERY")) {
+                    String query = data.getStringExtra("USER_QUERY");
+                    mCurrentQuery = query;
+                    fetchImages(query);
+                }
+               break;
+
+            default:
+                break;
+        }
     }
 }
