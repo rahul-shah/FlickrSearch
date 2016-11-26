@@ -45,6 +45,10 @@ public class SearchActivity extends AppCompatActivity
         });
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconified(false);
+        searchView.clearFocus();
+        searchView.setFocusable(true);
+        searchView.requestFocusFromTouch();
         return true;
     }
 }

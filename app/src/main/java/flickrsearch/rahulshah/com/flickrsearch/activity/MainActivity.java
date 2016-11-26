@@ -1,9 +1,13 @@
 package flickrsearch.rahulshah.com.flickrsearch.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -47,9 +51,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setSupportActionBar(mToolbar);
-
         ButterKnife.bind(this);
+
+        mToolbar.setTitle(R.string.main_screen_title);
+        setSupportActionBar(mToolbar);
 
         pDialog = new ProgressDialog(this);
         images = new ArrayList<>();
@@ -57,7 +62,13 @@ public class MainActivity extends AppCompatActivity
 
         setUpViews();
 
-        fetchImages("");
+        if(isNetworkAvailable()) {
+            fetchImages("");
+        }
+        else
+        {
+
+        }
     }
 
     private void setUpViews()
@@ -72,14 +83,14 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view, int position)
             {
-                /*Bundle bundle = new Bundle();
+                Bundle bundle = new Bundle();
                 bundle.putSerializable("images", images);
                 bundle.putInt("position", position);
 
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                SlideshowDialogFragment newFragment = SlideshowDialogFragment.newInstance();
+                ImageDetailFragment newFragment = ImageDetailFragment.newInstance();
                 newFragment.setArguments(bundle);
-                newFragment.show(ft, "slideshow");*/
+                newFragment.show(ft, "slideshow");
             }
 
             @Override
@@ -129,6 +140,7 @@ public class MainActivity extends AppCompatActivity
                         for (int i = 0; i < temp.items.size(); i++)
                         {
                             ImageHolder image = new ImageHolder();
+                            image.setImage(temp.items.get(i).title);
                             image.setImage(temp.items.get(i).media.m);
                             image.setTimestamp(temp.items.get(i).date_taken);
                             images.add(image);
@@ -146,6 +158,7 @@ public class MainActivity extends AppCompatActivity
                         pDialog.hide();
                     }
         });
+        req.setShouldCache(true);
 
         // Adding request to request queue
         FlickrSearchApp.getInstance().addToRequestQueue(req);
@@ -168,5 +181,11 @@ public class MainActivity extends AppCompatActivity
             default:
                 break;
         }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
