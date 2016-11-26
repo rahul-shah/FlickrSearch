@@ -1,7 +1,9 @@
 package flickrsearch.rahulshah.com.flickrsearch.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -28,9 +30,10 @@ import flickrsearch.rahulshah.com.flickrsearch.model.JsonAPIResponse;
 public class MainActivity extends AppCompatActivity
 {
 
-    @BindView(R.id.toolbar) Toolbar mToolbar;
-    @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
-    @BindView(R.id.swipe_refresh_container) SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.activity_main_toolbar) Toolbar mToolbar;
+    @BindView(R.id.activity_main_recycler_view) RecyclerView mRecyclerView;
+    @BindView(R.id.activity_main_refresh_container) SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.activity_main_fab) FloatingActionButton mSearchFAB;
 
     private String TAG = MainActivity.class.getSimpleName();
     private static final String endpoint = "https://api.flickr.com/services/feeds/photos_public.gne?&tags=\"cats\"&format=json&nojsoncallback=1";
@@ -46,11 +49,11 @@ public class MainActivity extends AppCompatActivity
 
         ButterKnife.bind(this);
 
-        setUpViews();
-
         pDialog = new ProgressDialog(this);
         images = new ArrayList<>();
         mAdapter = new ImageGalleryAdapter(getApplicationContext(), images);
+
+        setUpViews();
 
         fetchImages();
     }
@@ -89,6 +92,15 @@ public class MainActivity extends AppCompatActivity
             public void onRefresh() {
                 mSwipeRefreshLayout.setRefreshing(false);
                 fetchImages();
+            }
+        });
+
+        mSearchFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Click action
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -12,21 +12,21 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.4.0_1bfa1e62a85716bae18188323f583d49e756d849/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
         <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.4.0_4d69b1137a09f87abe4b3714c9321b8654b336f4/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Applications/Android Studio.app/Contents/gradle/m2repository/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="a60a5e993c98c864010053cb901b7eab25306568">
-        <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.2.4_d0ce76b63ce905fbab3c5d385c8e1b8692010f19/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -48,6 +48,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.4.0_6c84f6ec67ddf4cfc8bed0fda3f70d8d0cb0daeb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -63,6 +72,105 @@
         revision="23.0.3"
         sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
         <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.7.0_bc50f5cf830c915415c2b12886fc11a46ed80fd2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.4.0_fbf0e26b99389125624169e733418b4a9c5f5d6d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rahulshah/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.4.0/ea392375cf9ff59234a82e7928a204215ccc98cd/butterknife-annotations-8.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ea392375cf9ff59234a82e7928a204215ccc98cd">
+        <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.4.0_2ea4e67552c4dd373d39cec4592b10956f5730be/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.4.0_93c7ba7f39ed86da65fce3ae1c4dea43fb71b058/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a07818a1ecabdb149998823429cce555af4b9cba">
+        <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.4.0_a4f7e57e30e6f2ad1aa409623ee1bbf234484bee/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="8ecf19110897c60a3420da7caadceab7354fbce3">
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_f67ae46bc787a5fb225a6a3cb3d39f50318b1bd7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.4.0_9bd1440312dc20a346018c94409d5dd5ec5bfd9a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="eab0df9cd6920672961cf7e35a5c7b01ddbd0893">
+        <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c64f2c458d1d8297c08344a969522d873f05d39f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.4.0_fa38e4d90af6dc215c38e9f7f4a17cc8dd5b6c7d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a07818a1ecabdb149998823429cce555af4b9cba">
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.4.0_81b4453bf865f3fda57d9a5f8b57609e8b9d277d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/exploded-aar/com.android.volley/volley/1.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.volley-volley-1.0.0_c1c6faf25bb8022044e5c6eb28ba7735426c36a0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Applications/Android Studio.app/Contents/gradle/m2repository/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.2.4_d0ce76b63ce905fbab3c5d385c8e1b8692010f19/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -93,48 +201,39 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/rahulshah/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.4.0/ea392375cf9ff59234a82e7928a204215ccc98cd/butterknife-annotations-8.4.0.jar"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="ea392375cf9ff59234a82e7928a204215ccc98cd">
-        <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.4.0_2ea4e67552c4dd373d39cec4592b10956f5730be/classes.dex" />
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.4.0_3a5c29ac50912b7deed946c65380f67746435ec5/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.4.0/jars/classes.jar"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="a07818a1ecabdb149998823429cce555af4b9cba">
-        <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.4.0_a4f7e57e30e6f2ad1aa409623ee1bbf234484bee/classes.dex" />
+        sha1="ce2440d7115720cf02947b0998e5d079abd5fd8b">
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b4392c1acebf944a3d9b3b7fca6b858dd6aab427/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.4.0_9bd1440312dc20a346018c94409d5dd5ec5bfd9a/classes.dex" />
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.4.0_c21a2d4a77538e4f605cb9182b0ad4687e1ecf4c/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="eab0df9cd6920672961cf7e35a5c7b01ddbd0893">
-        <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c64f2c458d1d8297c08344a969522d873f05d39f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/jars/classes.jar"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
-        <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.4.0_fa38e4d90af6dc215c38e9f7f4a17cc8dd5b6c7d/classes.dex" />
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.4.0_ad16814d3f5df246b7de417aebb2e56649fcdf4f/classes.dex" />
     </item>
 
 </items>
