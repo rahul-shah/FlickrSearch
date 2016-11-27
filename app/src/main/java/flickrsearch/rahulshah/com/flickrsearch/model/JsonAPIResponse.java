@@ -9,25 +9,41 @@ public class JsonAPIResponse
 {
     @SerializedName("title")
     @Expose
-    public String title;
+    private String title;
 
     @SerializedName("link")
     @Expose
-    public String link;
+    private String link;
 
     @SerializedName("description")
     @Expose
-    public String description;
+    private String description;
 
     @SerializedName("modified")
     @Expose
-    public String modified;
+    private String modified;
 
     @SerializedName("generator")
     @Expose
-    public String generator;
+    private String generator;
 
     @SerializedName("items")
     @Expose
-    public ArrayList<FileItems> items;
+    private ArrayList<FileItems> items;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public ArrayList<FileItems> getItems() {
+        return items;
+    }
 }

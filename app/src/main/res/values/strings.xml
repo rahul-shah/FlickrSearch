@@ -2,7 +2,17 @@
     <string name="app_name">Flickr Search</string>
     <string name="action_settings">Settings</string>
     <string name="main_screen_title">Trending Now</string>
-    <string name="search_screen_title">Search</string>
-    <string name="search_screen_description">The moments of happiness we enjoy take us by surprise.\nIt is not that we seize them, but that they seize us.\n\nFind some of those moments on Flickr by using our search feature.</string>
+    <string name="storage_permission_needed">Please grant storage permission to proceed</string>
+    <string name="search_screen_description">Find moments on Flickr using search.</string>
+    <string name="send_to">Send to</string>
+    <string name="share_image_context_menu">Share image</string>
+    <string name="share_context_menu_title">Share</string>
+    <string name="searching_for_images">Searching for images</string>
+    <string name="image_save_folder_name">/rahul_flickr_search</string>
+    <string name="tour_1_desc">An app that lets you search flickr for images</string>
+    <string name="tour_2_header">View images</string>
+    <string name="tour_2_desc">View images in our gallery our save them on your device to view them later.</string>
+    <string name="tour_3_header">Share them with your friends</string>
+    <string name="tour_3_desc">Share the images with your friends, press and hold on an image you like or use the share button when browsing through them.</string>
 
 </resources>

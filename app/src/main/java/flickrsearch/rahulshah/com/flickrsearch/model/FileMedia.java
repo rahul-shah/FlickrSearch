@@ -7,5 +7,9 @@ public class FileMedia
 {
     @SerializedName("m")
     @Expose
-    public String m;
+    private String m;
+
+    public String getM() {
+        return m;
+    }
 }

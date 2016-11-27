@@ -1,9 +1,6 @@
 package flickrsearch.rahulshah.com.flickrsearch.activity;
 
-import android.Manifest;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Window;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
@@ -16,15 +13,11 @@ public class WelcomeIntroActivity extends AppIntro {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addSlide(AppIntroFragment.newInstance("Flickr Search", "Smartly named app that lets you search flickr for images.", R.drawable.howtotest, Color.parseColor("#2196F3") ));
-        addSlide(AppIntroFragment.newInstance("Search Images", "Test description", R.drawable.howtotest, Color.parseColor("#2196F3") ));
-        addSlide(AppIntroFragment.newInstance("View them", "Test description", R.drawable.howtotest, Color.parseColor("#2196F3") ));
-        addSlide(AppIntroFragment.newInstance("Share them with your friends", "Test description", R.drawable.howtotest, Color.parseColor("#2196F3") ));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.app_name), getString(R.string.tour_1_desc), R.drawable.howtotest, R.color.colorPrimary ));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.tour_2_header), getString(R.string.tour_2_desc), R.drawable.maxresdefault, R.color.colorPrimary ));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.tour_3_header), getString(R.string.tour_3_desc), R.drawable.share, R.color.colorPrimary ));
 
-        setBarColor(Color.parseColor("#3F51B5"));
-        setSeparatorColor(Color.parseColor("#2196F3"));
-
-        // SHOW or HIDE the statusbar
+        // show the statusbar
         showStatusBar(true);
 
         // Hide Skip/Done button

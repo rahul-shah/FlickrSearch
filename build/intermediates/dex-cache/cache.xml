@@ -124,7 +124,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="4337fecbe4e0d5ba4999555bb382d7383f01b2b4">
+        sha1="3916921a304f9ae268881eb508821c49a48d530e">
         <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_f67ae46bc787a5fb225a6a3cb3d39f50318b1bd7/classes.dex" />
     </item>
     <item
@@ -192,21 +192,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/exploded-aar/com.github.paolorotolo/appintro/4.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="95b97c30c8331619a9cc560ba9c3adb806e00ead">
-        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.paolorotolo-appintro-4.0.0_b8fb0b205cbfb177a3166fd78641ee48e80682ae/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/rahulshah/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.1.0/support-annotations-24.1.0.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="8a23146e1a8c7cb4758e3d3f62449213f1e51f67">
         <dex dex="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.1.0_ee96a1bd560897aa52c5e68a622521f57e93ffc2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/exploded-aar/com.github.paolorotolo/appintro/4.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="95b97c30c8331619a9cc560ba9c3adb806e00ead">
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.paolorotolo-appintro-4.0.0_b8fb0b205cbfb177a3166fd78641ee48e80682ae/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -232,7 +232,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="eca072acd25ea41b5cabac2e2ae58bcf3bb4a34b">
+        sha1="a0954c5f34b2b1d2ac82817253d6d831e7047516">
         <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b4392c1acebf944a3d9b3b7fca6b858dd6aab427/classes.dex" />
     </item>
     <item

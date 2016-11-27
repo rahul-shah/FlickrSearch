@@ -8,6 +8,7 @@ public class ImageHolder implements Serializable
     private String mImage;
     private String mFullSizeImage;
     private String mTimestamp;
+    private String mDescription;
 
     //Default constructor
     public ImageHolder()
@@ -15,12 +16,13 @@ public class ImageHolder implements Serializable
 
     }
 
-    public ImageHolder(String name, String image, String timestamp, String fullSizeImage)
+    public ImageHolder(String name, String image, String timestamp, String fullSizeImage,String description)
     {
         mName = name;
         mImage = image;
         mFullSizeImage = fullSizeImage;
         mTimestamp = timestamp;
+        mDescription = description;
     }
 
     public String getName() {
@@ -45,6 +47,14 @@ public class ImageHolder implements Serializable
 
     public void setFullImage(String image) {
         mFullSizeImage = image;
+    }
+
+    public String getImageDescription() {
+        return mDescription;
+    }
+
+    public void setImageDescription(String description) {
+        mDescription = description;
     }
 
     public String getTimestamp() {

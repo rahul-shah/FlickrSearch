@@ -7,21 +7,49 @@ public class FileItems
 {
     @SerializedName("title")
     @Expose
-    public String title;
+    private String title;
 
     @SerializedName("link")
     @Expose
-    public String link;
+    private String link;
 
     @SerializedName("date_taken")
     @Expose
-    public String date_taken;
+    private String date_taken;
 
     @SerializedName("description")
     @Expose
-    public String description;
+    private String description;
 
     @SerializedName("media")
     @Expose
-    public FileMedia media;
+    private FileMedia media;
+
+    @SerializedName("tags")
+    @Expose
+    private String tags;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public FileMedia getMedia() {
+        return media;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public String getDate_taken() {
+        return date_taken;
+    }
+
+    public String getTags() {
+        return tags;
+    }
 }

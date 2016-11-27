@@ -1,31 +1,39 @@
 package flickrsearch.rahulshah.com.flickrsearch.activity;
 
 import android.app.ProgressDialog;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -42,12 +50,11 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.activity_main_toolbar) Toolbar mToolbar;
     @BindView(R.id.activity_main_recycler_view) RecyclerView mRecyclerView;
     @BindView(R.id.activity_main_refresh_container) SwipeRefreshLayout mSwipeRefreshLayout;
-    @BindView(R.id.activity_main_fab) FloatingActionButton mSearchFAB;
 
     private String TAG = MainActivity.class.getSimpleName();
     private static final String endpoint = "https://api.flickr.com/services/feeds/photos_public.gne?&tags=";
-    private ArrayList<ImageHolder> images;
-    private ProgressDialog pDialog;
+    private ArrayList<ImageHolder> mListOfImages;
+    private ProgressDialog mProgressDialog;
     private ImageGalleryAdapter mAdapter;
     private String mCurrentQuery = "";
     private int mContextMenuItemSelected = 0;
@@ -64,9 +71,9 @@ public class MainActivity extends AppCompatActivity
         mToolbar.setTitle(R.string.main_screen_title);
         setSupportActionBar(mToolbar);
 
-        pDialog = new ProgressDialog(this);
-        images = new ArrayList<>();
-        mAdapter = new ImageGalleryAdapter(getApplicationContext(), images);
+        mProgressDialog = new ProgressDialog(this);
+        mListOfImages = new ArrayList<>();
+        mAdapter = new ImageGalleryAdapter(getApplicationContext(), mListOfImages);
 
         setUpViews();
 
@@ -76,7 +83,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        pDialog.hide();
+        mProgressDialog.hide();
     }
 
     private void setUpViews()
@@ -92,7 +99,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view, int position)
             {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("images", images);
+                bundle.putSerializable("images", mListOfImages);
                 bundle.putInt("position", position);
 
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -116,21 +123,12 @@ public class MainActivity extends AppCompatActivity
                 fetchImages(mCurrentQuery);
             }
         });
-
-        mSearchFAB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Click action
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                startActivityForResult(intent,SEARCH_QUERY_REQUEST);
-            }
-        });
     }
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.setHeaderTitle("Share this image");
+        menu.setHeaderTitle(R.string.share_image_context_menu);
         menu.add(0, v.getId(), 0, "Share");
     }
 
@@ -143,10 +141,9 @@ public class MainActivity extends AppCompatActivity
 
     private void createSharingMenu(int imagePosition)
     {
-        //Uri uri = Uri.parse(images.get(imagePosition).getFullImage());
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, images.get(imagePosition).getFullImage());
+        shareIntent.putExtra(Intent.EXTRA_TEXT, mListOfImages.get(imagePosition).getFullImage());
         shareIntent.setType("text/plain");
         startActivity(Intent.createChooser(shareIntent,"send to"));
     }
@@ -154,8 +151,8 @@ public class MainActivity extends AppCompatActivity
     private void fetchImages(String query)
     {
         String apiFinal = endpoint + query + "&format=json&nojsoncallback=1";
-        pDialog.setMessage("Searching for images");
-        pDialog.show();
+        mProgressDialog.setMessage(getResources().getString(R.string.searching_for_images));
+        mProgressDialog.show();
 
         StringRequest req = new StringRequest(apiFinal,
                 new Response.Listener<String>()
@@ -165,19 +162,20 @@ public class MainActivity extends AppCompatActivity
                     {
                         Log.d(TAG, response.toString());
                         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-                        JsonAPIResponse temp = gson.fromJson(response,JsonAPIResponse.class);
+                        JsonAPIResponse apiResponseObject = gson.fromJson(response,JsonAPIResponse.class);
 
-                        pDialog.hide();
-                        images.clear();
+                        mProgressDialog.hide();
+                        mListOfImages.clear();
 
-                        for (int i = 0; i < temp.items.size(); i++)
+                        for (int i = 0; i < apiResponseObject.getItems().size(); i++)
                         {
                             ImageHolder image = new ImageHolder();
-                            image.setImage(temp.items.get(i).title);
-                            image.setImage(temp.items.get(i).media.m);
-                            image.setTimestamp(temp.items.get(i).date_taken);
-                            image.setFullImage(temp.items.get(i).link);
-                            images.add(image);
+                            image.setName(apiResponseObject.getItems().get(i).getTitle());
+                            image.setImage(apiResponseObject.getItems().get(i).getMedia().getM());
+                            image.setTimestamp(apiResponseObject.getItems().get(i).getDate_taken());
+                            image.setFullImage(apiResponseObject.getItems().get(i).getLink());
+                            image.setImageDescription(apiResponseObject.getItems().get(i).getDescription());
+                            mListOfImages.add(image);
                         }
 
                         mAdapter.notifyDataSetChanged();
@@ -189,7 +187,7 @@ public class MainActivity extends AppCompatActivity
                     public void onErrorResponse(VolleyError error)
                     {
                         Log.e(TAG, "Error: " + error.getMessage());
-                        pDialog.hide();
+                        mProgressDialog.hide();
                     }
         });
         req.setShouldCache(true);
@@ -245,5 +243,48 @@ public class MainActivity extends AppCompatActivity
             //  Apply changes
             e.apply();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu, menu);
+        // Retrieve the SearchView and plug it into SearchManager
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                fetchImages(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconified(false);
+        searchView.clearFocus();
+        searchView.setFocusable(true);
+        searchView.requestFocusFromTouch();
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode)
+        {
+            case 1:
+                if (ActivityCompat.checkSelfPermission(MainActivity.this,android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+                {
+                    Toast.makeText(FlickrSearchApp.getInstance(),R.string.storage_permission_needed,Toast.LENGTH_SHORT).show();
+                }
+
+        }
+
     }
 }

@@ -1,28 +1,32 @@
 package flickrsearch.rahulshah.com.flickrsearch.activity;
 
+import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.github.clans.fab.FloatingActionButton;
 
 import java.io.File;
 import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import flickrsearch.rahulshah.com.flickrsearch.R;
@@ -35,7 +39,9 @@ public class ImageDetailFragment extends DialogFragment
     @BindView(R.id.fragment_image_detail_count) TextView mImageCount;
     @BindView(R.id.fragment_image_detail_title) TextView mImageTitle;
     @BindView(R.id.fragment_image_detail_date) TextView mImageDate;
-    @BindView(R.id.fragment_image_detail_fab) com.github.clans.fab.FloatingActionButton mShareImageBtn;
+    @BindView(R.id.fragment_image_detail_tag) TextView mImageTags;
+    @BindView(R.id.fragment_image_detail_fab) FloatingActionButton mShareImageBtn;
+    @BindView(R.id.fragment_image_detail_save) FloatingActionButton mSaveImageBtn;
 
 
     private ArrayList<ImageHolder> mListOfImages;
@@ -84,20 +90,32 @@ public class ImageDetailFragment extends DialogFragment
         mShareImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                file_download(mListOfImages.get(mSelectedPosition).getImage());
                 createSharingMenu(mSelectedPosition);
+            }
+        });
+
+        mSaveImageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ActivityCompat.checkSelfPermission(getActivity(),android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+                {
+                    file_download(mListOfImages.get(mSelectedPosition).getImage());
+                }
+                else
+                {
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+                }
             }
         });
     }
 
     private void createSharingMenu(int imagePosition)
     {
-        //Uri uri = Uri.parse(images.get(imagePosition).getFullImage());
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_TEXT, mListOfImages.get(imagePosition).getFullImage());
         shareIntent.setType("text/plain");
-        startActivity(Intent.createChooser(shareIntent,"send to"));
+        startActivity(Intent.createChooser(shareIntent,getResources().getString(R.string.send_to)));
     }
 
     private void setCurrentItem(int position) {
@@ -106,7 +124,8 @@ public class ImageDetailFragment extends DialogFragment
     }
 
     //	page change listener
-    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
+    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener()
+    {
 
         @Override
         public void onPageSelected(int position) {
@@ -131,6 +150,8 @@ public class ImageDetailFragment extends DialogFragment
         ImageHolder image = mListOfImages.get(position);
         mImageTitle.setText(image.getName());
         mImageDate.setText(image.getTimestamp());
+        mImageTags.setText(Html.fromHtml(image.getImageDescription()));
+
     }
 
     //	adapter
@@ -180,8 +201,7 @@ public class ImageDetailFragment extends DialogFragment
     }
 
     public void file_download(String uRl) {
-        File direct = new File(Environment.getExternalStorageDirectory()
-                + "/rahul_flickr_search");
+        File direct = new File(Environment.getExternalStorageDirectory() + getResources().getString(R.string.image_save_folder_name));
 
         if (!direct.exists()) {
             direct.mkdirs();
@@ -196,9 +216,7 @@ public class ImageDetailFragment extends DialogFragment
         request.setAllowedNetworkTypes(
                 DownloadManager.Request.NETWORK_WIFI
                         | DownloadManager.Request.NETWORK_MOBILE)
-                .setAllowedOverRoaming(false).setTitle("Demo")
-                .setDescription("Something useful. No, really.")
-                .setDestinationInExternalPublicDir("/rahul_flickr_search", "test.jpg");
+                .setDestinationInExternalPublicDir(getResources().getString(R.string.image_save_folder_name), mListOfImages.get(mSelectedPosition).getName() + ".jpg");
 
         mgr.enqueue(request);
 
