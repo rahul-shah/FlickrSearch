@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/exploded-aar/com.github.clans/fab/1.6.4/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="1c3b9743fe8bb166a90a7e98b9b9f1f8021d80cd">
+        <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.clans-fab-1.6.4_a3e52f092f3982d6d2c530519fe23bc073ad7fcc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/rahulshah/Downloads/FlickrSearch/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
@@ -223,7 +232,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="ed08b9ab88c0cb035d9b16b82c6e5d18e9dc6bbe">
+        sha1="eca072acd25ea41b5cabac2e2ae58bcf3bb4a34b">
         <dex dex="/Users/rahulshah/Documents/FlickrSearch/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b4392c1acebf944a3d9b3b7fca6b858dd6aab427/classes.dex" />
     </item>
     <item

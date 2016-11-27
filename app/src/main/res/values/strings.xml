@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="main_screen_title">Trending Now</string>
     <string name="search_screen_title">Search</string>
+    <string name="search_screen_description">The moments of happiness we enjoy take us by surprise.\nIt is not that we seize them, but that they seize us.\n\nFind some of those moments on Flickr by using our search feature.</string>
+
 </resources>

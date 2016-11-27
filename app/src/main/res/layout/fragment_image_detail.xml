@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
@@ -20,6 +21,15 @@
         android:textSize="16dp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/fragment_image_detail_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="16dp"
+        android:layout_below="@+id/fragment_image_detail_count"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,14 +38,6 @@
         android:orientation="vertical"
         android:layout_marginBottom="20dp"
         android:padding="20dp">
-
-        <TextView
-            android:id="@+id/fragment_image_detail_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="16dp"
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/fragment_image_detail_date"
@@ -53,16 +55,28 @@
             android:layout_alignParentLeft="true"
             android:textColor="@android:color/white"/>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fragment_image_detail_fab"
+        <com.github.clans.fab.FloatingActionMenu
+            android:layout_alignParentBottom="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@android:drawable/ic_menu_share" />
+            fab:menu_icon="@android:drawable/ic_input_add">
 
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fragment_image_detail_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:src="@android:drawable/ic_menu_share" />
 
-        />
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fragment_image_detail_fab1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:src="@android:drawable/ic_menu_save" />
+
+        </com.github.clans.fab.FloatingActionMenu>
 
     </LinearLayout>
 

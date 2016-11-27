@@ -1,8 +1,13 @@
 package flickrsearch.rahulshah.com.flickrsearch.activity;
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
@@ -15,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import java.io.File;
 import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +35,8 @@ public class ImageDetailFragment extends DialogFragment
     @BindView(R.id.fragment_image_detail_count) TextView mImageCount;
     @BindView(R.id.fragment_image_detail_title) TextView mImageTitle;
     @BindView(R.id.fragment_image_detail_date) TextView mImageDate;
-    @BindView(R.id.fragment_image_detail_fab) FloatingActionButton mShareImageBtn;
+    @BindView(R.id.fragment_image_detail_fab) com.github.clans.fab.FloatingActionButton mShareImageBtn;
+
 
     private ArrayList<ImageHolder> mListOfImages;
     private MyViewPagerAdapter mViewPagerAdapter;
@@ -76,6 +84,7 @@ public class ImageDetailFragment extends DialogFragment
         mShareImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                file_download(mListOfImages.get(mSelectedPosition).getImage());
                 createSharingMenu(mSelectedPosition);
             }
         });
@@ -168,5 +177,30 @@ public class ImageDetailFragment extends DialogFragment
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
         }
+    }
+
+    public void file_download(String uRl) {
+        File direct = new File(Environment.getExternalStorageDirectory()
+                + "/rahul_flickr_search");
+
+        if (!direct.exists()) {
+            direct.mkdirs();
+        }
+
+        DownloadManager mgr = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+
+        Uri downloadUri = Uri.parse(uRl);
+        DownloadManager.Request request = new DownloadManager.Request(
+                downloadUri);
+
+        request.setAllowedNetworkTypes(
+                DownloadManager.Request.NETWORK_WIFI
+                        | DownloadManager.Request.NETWORK_MOBILE)
+                .setAllowedOverRoaming(false).setTitle("Demo")
+                .setDescription("Something useful. No, really.")
+                .setDestinationInExternalPublicDir("/rahul_flickr_search", "test.jpg");
+
+        mgr.enqueue(request);
+
     }
 }

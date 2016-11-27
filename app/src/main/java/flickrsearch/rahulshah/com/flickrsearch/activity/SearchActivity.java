@@ -20,6 +20,9 @@ public class SearchActivity extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search);
+
+        getSupportActionBar().setTitle(R.string.search_screen_title);
     }
 
     @Override
