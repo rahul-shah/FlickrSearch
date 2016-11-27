@@ -60,13 +60,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            fab:menu_icon="@android:drawable/ic_input_add">
+            fab:menu_colorNormal="#FFCC00"
+            android:id="@+id/floatingActionMenu">
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/fragment_image_detail_fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
+                fab:fab_colorNormal="#FFCC00"
                 android:src="@android:drawable/ic_menu_share" />
 
             <com.github.clans.fab.FloatingActionButton
@@ -74,6 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
+                fab:fab_colorNormal="#FFCC00"
                 android:src="@android:drawable/ic_menu_save" />
 
         </com.github.clans.fab.FloatingActionMenu>
