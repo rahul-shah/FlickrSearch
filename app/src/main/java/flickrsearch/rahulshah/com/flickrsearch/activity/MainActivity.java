@@ -3,10 +3,12 @@ package flickrsearch.rahulshah.com.flickrsearch.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        launchWelcomeScreen();
+
         mToolbar.setTitle(R.string.main_screen_title);
         setSupportActionBar(mToolbar);
 
@@ -67,8 +71,12 @@ public class MainActivity extends AppCompatActivity
         setUpViews();
 
         fetchImages("");
+    }
 
-        startActivity(new Intent(this,WelcomeIntroActivity.class));
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        pDialog.hide();
     }
 
     private void setUpViews()
@@ -213,5 +221,29 @@ public class MainActivity extends AppCompatActivity
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private void launchWelcomeScreen()
+    {
+        SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+        //  Create a new boolean and preference and set it to true
+        boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
+
+        //  If the activity has never started before...
+        if (isFirstStart)
+        {
+            //  Launch app intro
+            startActivity(new Intent(MainActivity.this, WelcomeIntroActivity.class));
+
+            //  Make a new preferences editor
+            SharedPreferences.Editor e = getPrefs.edit();
+
+            //  Edit preference to make it false because we don't want this to run again
+            e.putBoolean("firstStart", false);
+
+            //  Apply changes
+            e.apply();
+        }
     }
 }

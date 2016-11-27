@@ -1,7 +1,10 @@
 package flickrsearch.rahulshah.com.flickrsearch.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -25,9 +28,11 @@ public class ImageDetailFragment extends DialogFragment
     @BindView(R.id.fragment_image_detail_count) TextView mImageCount;
     @BindView(R.id.fragment_image_detail_title) TextView mImageTitle;
     @BindView(R.id.fragment_image_detail_date) TextView mImageDate;
-    private ArrayList<ImageHolder> images;
-    private MyViewPagerAdapter myViewPagerAdapter;
-    private int selectedPosition = 0;
+    @BindView(R.id.fragment_image_detail_fab) FloatingActionButton mShareImageBtn;
+
+    private ArrayList<ImageHolder> mListOfImages;
+    private MyViewPagerAdapter mViewPagerAdapter;
+    private int mSelectedPosition = 0;
 
     static ImageDetailFragment newInstance()
     {
@@ -47,21 +52,48 @@ public class ImageDetailFragment extends DialogFragment
     {
         View v = inflater.inflate(R.layout.fragment_image_detail, container, false);
         ButterKnife.bind(this,v);
-        images = (ArrayList<ImageHolder>) getArguments().getSerializable("images");
-        selectedPosition = getArguments().getInt("position");
+        mListOfImages = (ArrayList<ImageHolder>) getArguments().getSerializable("images");
+        mSelectedPosition = getArguments().getInt("position");
 
-        myViewPagerAdapter = new MyViewPagerAdapter();
-        mViewPager.setAdapter(myViewPagerAdapter);
+        mViewPagerAdapter = new MyViewPagerAdapter();
+        mViewPager.setAdapter(mViewPagerAdapter);
         mViewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
-        setCurrentItem(selectedPosition);
+        setCurrentItem(mSelectedPosition);
 
         return v;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        setUpViews();
+    }
+
+    private void setUpViews()
+    {
+        mShareImageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createSharingMenu(mSelectedPosition);
+            }
+        });
+    }
+
+    private void createSharingMenu(int imagePosition)
+    {
+        //Uri uri = Uri.parse(images.get(imagePosition).getFullImage());
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, mListOfImages.get(imagePosition).getFullImage());
+        shareIntent.setType("text/plain");
+        startActivity(Intent.createChooser(shareIntent,"send to"));
+    }
+
     private void setCurrentItem(int position) {
         mViewPager.setCurrentItem(position, false);
-        displayMetaInfo(selectedPosition);
+        displayMetaInfo(mSelectedPosition);
     }
 
     //	page change listener
@@ -69,6 +101,7 @@ public class ImageDetailFragment extends DialogFragment
 
         @Override
         public void onPageSelected(int position) {
+            mSelectedPosition = position;
             displayMetaInfo(position);
         }
 
@@ -84,9 +117,9 @@ public class ImageDetailFragment extends DialogFragment
     };
 
     private void displayMetaInfo(int position) {
-        mImageCount.setText((position + 1) + " of " + images.size());
+        mImageCount.setText((position + 1) + " of " + mListOfImages.size());
 
-        ImageHolder image = images.get(position);
+        ImageHolder image = mListOfImages.get(position);
         mImageTitle.setText(image.getName());
         mImageDate.setText(image.getTimestamp());
     }
@@ -107,7 +140,7 @@ public class ImageDetailFragment extends DialogFragment
 
             ImageView imageViewPreview = (ImageView) view.findViewById(R.id.image_preview);
 
-            ImageHolder image = images.get(position);
+            ImageHolder image = mListOfImages.get(position);
 
             Glide.with(getActivity()).load(image.getImage())
                     .thumbnail(0.5f)
@@ -122,7 +155,7 @@ public class ImageDetailFragment extends DialogFragment
 
         @Override
         public int getCount() {
-            return images.size();
+            return mListOfImages.size();
         }
 
         @Override
