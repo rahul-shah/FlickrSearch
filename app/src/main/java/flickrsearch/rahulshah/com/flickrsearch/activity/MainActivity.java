@@ -66,8 +66,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        //Launch welcome intro only the first time
         launchWelcomeScreen();
 
+        //Set toolbar title
         mToolbar.setTitle(R.string.main_screen_title);
         setSupportActionBar(mToolbar);
 
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity
 
         setUpViews();
 
+        //Initial API call for trending images
         fetchImages("");
     }
 
@@ -98,6 +101,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view, int position)
             {
+                //Single tap opens detailed screen
+
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("images", mListOfImages);
                 bundle.putInt("position", position);
@@ -111,6 +116,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onLongClick(View view, int position)
             {
+                //Longpress shows context menu
                 mContextMenuItemSelected = position;
                 registerForContextMenu(view);
             }
@@ -139,6 +145,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    //Sharing menu
     private void createSharingMenu(int imagePosition)
     {
         Intent shareIntent = new Intent();
@@ -267,6 +274,7 @@ public class MainActivity extends AppCompatActivity
         searchView.setIconified(false);
         searchView.clearFocus();
         searchView.setFocusable(true);
+        searchView.setMaxWidth( Integer.MAX_VALUE );
         searchView.requestFocusFromTouch();
         return true;
     }

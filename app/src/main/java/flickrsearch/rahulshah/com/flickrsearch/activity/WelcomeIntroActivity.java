@@ -13,8 +13,13 @@ public class WelcomeIntroActivity extends AppIntro {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Tour 1
         addSlide(AppIntroFragment.newInstance(getString(R.string.app_name), getString(R.string.tour_1_desc), R.drawable.howtotest, R.color.colorPrimary ));
+
+        //Tour 2
         addSlide(AppIntroFragment.newInstance(getString(R.string.tour_2_header), getString(R.string.tour_2_desc), R.drawable.maxresdefault, R.color.colorPrimary ));
+
+        //Tour 3
         addSlide(AppIntroFragment.newInstance(getString(R.string.tour_3_header), getString(R.string.tour_3_desc), R.drawable.share, R.color.colorPrimary ));
 
         // show the statusbar

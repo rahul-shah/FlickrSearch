@@ -28,10 +28,20 @@ dependencies {
     compile 'com.android.support:support-v4:23.2.1'
     compile 'com.google.code.gson:gson:2.2.+'
     compile 'com.android.support:recyclerview-v7:23.1.1'
+
+    //Volley for network API calls
     compile 'com.android.volley:volley:1.0.0'
+
+    //Glide for the image gallery/caching and more
     compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    //Butter knife is awesome
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    //Welcome screen intro
     compile 'com.github.paolorotolo:appintro:4.0.0'
+
+    //Floating action menu
     compile 'com.github.clans:fab:1.6.4'
 }

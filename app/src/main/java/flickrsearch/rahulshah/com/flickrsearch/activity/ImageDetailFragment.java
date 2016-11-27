@@ -154,7 +154,6 @@ public class ImageDetailFragment extends DialogFragment
 
     }
 
-    //	adapter
     public class MyViewPagerAdapter extends PagerAdapter {
 
         private LayoutInflater layoutInflater;
@@ -200,6 +199,7 @@ public class ImageDetailFragment extends DialogFragment
         }
     }
 
+    //Save file to local storage
     public void file_download(String uRl) {
         File direct = new File(Environment.getExternalStorageDirectory() + getResources().getString(R.string.image_save_folder_name));
 
