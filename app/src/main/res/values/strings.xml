@@ -9,6 +9,7 @@
     <string name="share_context_menu_title">Share</string>
     <string name="searching_for_images">Searching for images</string>
     <string name="image_save_folder_name">/rahul_flickr_search</string>
+    <string name="image_saved">Image Saved</string>
     <string name="tour_1_desc">An app that lets you search flickr for images</string>
     <string name="tour_2_header">View images</string>
     <string name="tour_2_desc">View images in our gallery our save them on your device to view them later.</string>

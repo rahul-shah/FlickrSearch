@@ -230,26 +230,31 @@ public class MainActivity extends AppCompatActivity
 
     private void launchWelcomeScreen()
     {
-        SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-        //  Create a new boolean and preference and set it to true
-        boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
+                //  Create a new boolean and preference and set it to true
+                boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
 
-        //  If the activity has never started before...
-        if (isFirstStart)
-        {
-            //  Launch app intro
-            startActivity(new Intent(MainActivity.this, WelcomeIntroActivity.class));
+                //  If the activity has never started before...
+                if (isFirstStart) {
+                    //  Launch app intro
+                    startActivity(new Intent(MainActivity.this, WelcomeIntroActivity.class));
 
-            //  Make a new preferences editor
-            SharedPreferences.Editor e = getPrefs.edit();
+                    //  Make a new preferences editor
+                    SharedPreferences.Editor e = getPrefs.edit();
 
-            //  Edit preference to make it false because we don't want this to run again
-            e.putBoolean("firstStart", false);
+                    //  Edit preference to make it false because we don't want this to run again
+                    e.putBoolean("firstStart", false);
 
-            //  Apply changes
-            e.apply();
-        }
+                    //  Apply changes
+                    e.apply();
+                }
+            }
+        });
+        t.start();
     }
 
     @Override

@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import flickrsearch.rahulshah.com.flickrsearch.FlickrSearchApp;
 import flickrsearch.rahulshah.com.flickrsearch.R;
 import flickrsearch.rahulshah.com.flickrsearch.model.ImageHolder;
 
@@ -219,6 +221,8 @@ public class ImageDetailFragment extends DialogFragment
                 .setDestinationInExternalPublicDir(getResources().getString(R.string.image_save_folder_name), mListOfImages.get(mSelectedPosition).getName() + ".jpg");
 
         mgr.enqueue(request);
+
+        Toast.makeText(FlickrSearchApp.getInstance(),R.string.image_saved,Toast.LENGTH_SHORT).show();
 
     }
 }
