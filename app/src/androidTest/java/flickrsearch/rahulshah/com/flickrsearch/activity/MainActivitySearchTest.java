@@ -36,6 +36,11 @@ public class MainActivitySearchTest {
 
     @Test
     public void mainActivitySearchTest() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ViewInteraction appCompatImageButton = onView(
                 allOf(withId(R.id.next), isDisplayed()));
         appCompatImageButton.perform(click());

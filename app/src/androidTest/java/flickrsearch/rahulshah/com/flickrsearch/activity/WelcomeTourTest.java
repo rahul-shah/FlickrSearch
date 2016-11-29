@@ -34,6 +34,12 @@ public class WelcomeTourTest {
 
     @Test
     public void welcomeTourTest() {
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ViewInteraction imageButton = onView(
                 allOf(withId(R.id.next),
                         childAtPosition(
